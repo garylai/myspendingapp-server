@@ -11,7 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150901031303) do
+ActiveRecord::Schema.define(version: 20150901060011) do
+
+  create_table "spendings", id: false, force: :cascade do |t|
+    t.string   "id",                limit: 36,                           null: false
+    t.decimal  "value",                         precision: 20, scale: 2, null: false
+    t.string   "spending_type",     limit: 255,                          null: false
+    t.date     "date_of_spending",                                       null: false
+    t.integer  "year_of_spending",  limit: 2,                            null: false
+    t.integer  "month_of_spending", limit: 1,                            null: false
+    t.integer  "day_of_spending",   limit: 1,                            null: false
+    t.string   "user_id",           limit: 255,                          null: false
+    t.datetime "created_at",                                             null: false
+    t.datetime "updated_at",                                             null: false
+  end
+
+  add_index "spendings", ["id"], name: "PRIMARY_KEY", unique: true, using: :btree
+  add_index "spendings", ["user_id"], name: "index_spendings_on_user_id", using: :btree
 
   create_table "users", id: false, force: :cascade do |t|
     t.string   "id",         limit: 36,  null: false
@@ -26,4 +42,5 @@ ActiveRecord::Schema.define(version: 20150901031303) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["id"], name: "PRIMARY_KEY", unique: true, using: :btree
 
+  add_foreign_key "spendings", "users"
 end
