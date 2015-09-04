@@ -9,6 +9,8 @@ Bundler.require(*Rails.groups)
 module Myspendingapp
   class Application < Rails::Application
     config.api_only = true
+    config.exceptions_app = self.routes
+    config.consider_all_requests_local = false
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
