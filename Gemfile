@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'rails-api'
 gem 'paranoia', '~> 2.0'
 gem 'email_validator', '1.6.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -49,3 +50,4 @@ group :development, :test do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 end
+ruby '2.2.2'
