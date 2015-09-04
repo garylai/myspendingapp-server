@@ -4,6 +4,8 @@ require 'UUIDHelper'
 class User < ActiveRecord::Base
   include UUIDHelper
 
+  acts_as_paranoid
+
   validates_presence_of :name, :email, :password, :salt
   validates :email, email: true
 

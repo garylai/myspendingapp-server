@@ -1,6 +1,8 @@
 require 'UUIDHelper'
 
 class Spending < ActiveRecord::Base
+  acts_as_paranoid
+  
   enum SpendingType: {transportation: 1, food: 2}
 
   include UUIDHelper

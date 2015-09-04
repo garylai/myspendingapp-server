@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150901060011) do
+ActiveRecord::Schema.define(version: 20150904055334) do
 
   create_table "spendings", id: false, force: :cascade do |t|
     t.string   "id",                limit: 36,                           null: false
@@ -24,8 +24,10 @@ ActiveRecord::Schema.define(version: 20150901060011) do
     t.string   "user_id",           limit: 255,                          null: false
     t.datetime "created_at",                                             null: false
     t.datetime "updated_at",                                             null: false
+    t.datetime "deleted_at"
   end
 
+  add_index "spendings", ["deleted_at"], name: "index_spendings_on_deleted_at", using: :btree
   add_index "spendings", ["id"], name: "PRIMARY_KEY", unique: true, using: :btree
   add_index "spendings", ["user_id"], name: "index_spendings_on_user_id", using: :btree
 
@@ -37,8 +39,10 @@ ActiveRecord::Schema.define(version: 20150901060011) do
     t.datetime "updated_at",             null: false
     t.string   "password",   limit: 255, null: false
     t.string   "salt",       limit: 255, null: false
+    t.datetime "deleted_at"
   end
 
+  add_index "users", ["deleted_at"], name: "index_users_on_deleted_at", using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["id"], name: "PRIMARY_KEY", unique: true, using: :btree
 

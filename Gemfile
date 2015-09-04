@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'paranoia', '~> 2.0'
 gem 'email_validator', '1.6.0'
 gem 'mysql2', '~> 0.3.20'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
