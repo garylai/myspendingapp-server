@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150904055334) do
+ActiveRecord::Schema.define(version: 20150905101712) do
 
   create_table "spendings", id: false, force: :cascade do |t|
     t.string   "id",                limit: 36,                           null: false
@@ -32,13 +32,13 @@ ActiveRecord::Schema.define(version: 20150904055334) do
   add_index "spendings", ["user_id"], name: "index_spendings_on_user_id", using: :btree
 
   create_table "users", id: false, force: :cascade do |t|
-    t.string   "id",         limit: 36,  null: false
-    t.string   "name",       limit: 255, null: false
-    t.string   "email",      limit: 255, null: false
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-    t.string   "password",   limit: 255, null: false
-    t.string   "salt",       limit: 255, null: false
+    t.string   "id",              limit: 36,  null: false
+    t.string   "name",            limit: 255, null: false
+    t.string   "email",           limit: 255, null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.string   "hashed_password", limit: 255, null: false
+    t.string   "salt",            limit: 255, null: false
     t.datetime "deleted_at"
   end
 

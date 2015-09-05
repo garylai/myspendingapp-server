@@ -6,15 +6,41 @@ class User < ActiveRecord::Base
 
   acts_as_paranoid
 
-  validates_presence_of :name, :email, :password, :salt
-  validates :email, email: true
+  attr_accessor :password
+
+  validates :password, presence: true, if: :validate_password?
+  validates :name, :hashed_password, :salt, presence: true
+  validates :email, email: true, uniqueness: true
+
+  attr_readonly :hashed_password, :salt
 
   self.primary_key = :id
   has_many :spendings, :dependent => :destroy
 
-  def raw_password=(pw)
+  def as_json(options={})
+     options[:except] ||= [:hashed_password, :salt]
+     super(options)
+  end
+
+  def password=(pw)
+    @password_changed = true
+
+    return if !pw.is_a?(String) || pw.empty?
     ret = PasswordHelper.create_hash(pw)
-    self.password = ret[:hashed_password]
-    self.salt = ret[:salt]
+    self[:hashed_password] = ret[:hashed_password]
+    self[:salt] = ret[:salt]
+
+    @password = pw
+  end
+
+  def validate_password?
+    self.new_record? || @password_changed
+  end
+
+  def errors_without_readonly_fields
+    err = self.errors.dup
+    err.delete(:hashed_password)
+    err.delete(:salt)
+    err
   end
 end

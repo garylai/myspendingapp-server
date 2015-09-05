@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   end
 
   get "/404", :to => "error#not_found"
+  get "/400", :to => "error#bad_request"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
