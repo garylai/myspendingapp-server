@@ -8,6 +8,6 @@ class AddUsers < ActiveRecord::Migration
       t.timestamps null: false
     end
     add_index :users, :email, :unique => true
-    add_index :users, :id, :unique => true, :name => 'PRIMARY_KEY'
+    add_index :users, :id, :unique => true, :name => 'USER_PRIMARY_KEY'
   end
 end

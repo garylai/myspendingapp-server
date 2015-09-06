@@ -13,6 +13,6 @@ class CreateSpendings < ActiveRecord::Migration
 
       t.timestamps null: false
     end
-    add_index :spendings, :id, :unique => true, :name => 'PRIMARY_KEY'
+    add_index :spendings, :id, :unique => true, :name => 'SPENDING_PRIMARY_KEY'
   end
 end
