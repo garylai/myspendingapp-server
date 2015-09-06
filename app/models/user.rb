@@ -22,6 +22,11 @@ class User < ActiveRecord::Base
      super(options)
   end
 
+  def is_password_correct?(pw)
+    return false if self[:hashed_password].blank? || self[:salt].blank?
+    PasswordHelper.validate_password pw, self[:hashed_password], self[:salt]
+  end
+
   def password=(pw)
     @password_changed = true
 

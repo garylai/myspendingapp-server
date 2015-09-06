@@ -3,8 +3,8 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   # protect_from_forgery with: :exception
   include ActionController::HttpAuthentication::Token::ControllerMethods
-  rescue_from StandardError, with: :handle_error
-  
+  rescue_from StandardError, with: :handle_exception
+
   def not_found
     render nothing: true, status: 404
   end
@@ -19,13 +19,18 @@ class ApplicationController < ActionController::Base
       render :json => {'error': 'accept only json'}, :status => :bad_request unless request.content_type == 'application/json'
     end
 
-    def is_a_string_and_not_empty?(str)
-      str.is_a? String && !str.empty?
-    end
-
     def handle_exception(e)
       render :json => {'errors': ['server error']}, status: :internal_server_error
       puts e.inspect
       puts e.backtrace.take(10)
+    end
+
+    def check_params_exist(*param_names)
+      errors = []
+      param_names.each do |name|
+        val = params[name]
+        errors << "#{name} cannot be blank" if val.blank?
+      end
+      render :json => {:errors => errors}, :status => :bad_request if errors.count > 0
     end
 end

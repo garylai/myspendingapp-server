@@ -3,11 +3,13 @@ Rails.application.routes.draw do
   scope '/api' do
     scope '/user' do
       post '/' => 'user#create', :format => false
+      post '/token' => 'user#login', :format => false
     end
   end
 
   get "/404", :to => "error#not_found"
   get "/400", :to => "error#bad_request"
+  get "/500", :to => "error#internal_server_error"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
