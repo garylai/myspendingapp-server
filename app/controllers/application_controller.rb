@@ -21,8 +21,8 @@ class ApplicationController < ActionController::Base
 
     def handle_exception(e)
       render :json => {'errors': ['server error']}, status: :internal_server_error
-      puts e.inspect
-      puts e.backtrace.take(10)
+      Rails.logger.error e.inspect
+      Rails.logger.error e.backtrace.take(10).join("\n")
     end
 
     def check_params_exist(*param_names)
