@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 20150905101712) do
   end
 
   add_index "spendings", ["deleted_at"], name: "index_spendings_on_deleted_at", using: :btree
-  add_index "spendings", ["id"], name: "PRIMARY_KEY", unique: true, using: :btree
+  add_index "spendings", ["id"], name: "SPENDING_PRIMARY_KEY", unique: true, using: :btree
   add_index "spendings", ["user_id"], name: "index_spendings_on_user_id", using: :btree
 
   create_table "users", id: false, force: :cascade do |t|
@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 20150905101712) do
 
   add_index "users", ["deleted_at"], name: "index_users_on_deleted_at", using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["id"], name: "PRIMARY_KEY", unique: true, using: :btree
+  add_index "users", ["id"], name: "USER_PRIMARY_KEY", unique: true, using: :btree
 
   add_foreign_key "spendings", "users"
 end
