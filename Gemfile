@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'ruby-jwt', '1.0', :git => 'https://github.com/garylai/ruby-jwt.git'
 gem 'rails-api'
 gem 'paranoia', '~> 2.0'
 gem 'email_validator', '1.6.0'
