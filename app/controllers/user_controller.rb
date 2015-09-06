@@ -21,6 +21,7 @@ class UserController < ApplicationController
   end
 
   def login
+    1/0
     email = params[:email]
     password = params[:password]
     user = User.where(email: params[:email]).first
