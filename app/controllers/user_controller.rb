@@ -26,12 +26,12 @@ class UserController < ApplicationController
     user = User.where(email: params[:email]).first
 
     if !user
-      render :json => {:error => ['user not found']}, :status => :forbidden
+      render :json => {:errors => ['user not found']}, :status => :forbidden
       return
     end
 
     if !user.is_password_correct? password
-      render :json => {:error => ['pssword not valid']}, :status => :forbidden
+      render :json => {:errors => ['pssword not valid']}, :status => :forbidden
       return
     end
 

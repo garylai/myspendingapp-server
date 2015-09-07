@@ -5,6 +5,9 @@ Rails.application.routes.draw do
       post '/' => 'user#create', :format => false
       post '/token' => 'user#login', :format => false
     end
+    scope '/spending' do
+      post '/' => 'spending#create', :format => false
+    end
   end
 
   get "/404", :to => "error#not_found"
