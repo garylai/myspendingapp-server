@@ -8,6 +8,9 @@ Rails.application.routes.draw do
     scope '/spending' do
       post '/' => 'spending#create', :format => false
     end
+    scope '/spending_type' do
+      get '/' => 'spending_type#index', :format => false
+    end
   end
 
   get "/404", :to => "error#not_found"
