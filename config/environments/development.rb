@@ -38,4 +38,8 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  config.middleware.use(Rack::Cache, {:verbose => true,
+                                      :metastore => 'file:tmp/cache/rack/meta',
+                                      :entitystore => 'file:tmp/cache/rack/body'})
 end

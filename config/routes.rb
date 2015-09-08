@@ -1,15 +1,17 @@
 Rails.application.routes.draw do
 
   scope '/api' do
-    scope '/user' do
-      post '/' => 'user#create', :format => false
-      post '/token' => 'user#login', :format => false
-    end
-    scope '/spending' do
-      post '/' => 'spending#create', :format => false
-    end
-    scope '/spending_type' do
-      get '/' => 'spending_type#index', :format => false
+    scope '/v1' do
+      scope '/user' do
+        post '/' => 'user#create', :format => false
+        post '/token' => 'user#login', :format => false
+      end
+      scope '/spending' do
+        post '/' => 'spending#create', :format => false
+      end
+      scope '/spending_type' do
+        get '/' => 'spending_type#index', :format => false
+      end
     end
   end
 

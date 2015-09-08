@@ -74,6 +74,8 @@ GEM
       activerecord (~> 4.0)
     pg (0.18.3)
     rack (1.6.4)
+    rack-cache (1.2)
+      rack (>= 0.4)
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (4.2.3)
@@ -138,6 +140,7 @@ DEPENDENCIES
   mysql2 (~> 0.3.20)
   paranoia (~> 2.0)
   pg
+  rack-cache
   rails (= 4.2.3)
   rails-api
   ruby-jwt (= 1.0)!

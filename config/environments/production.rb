@@ -73,10 +73,12 @@ Rails.application.configure do
 
   config.logger = Logger.new(STDOUT)
   STDOUT.sync = true
-  
+
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  # TODO: set up Rack::Cache using memcache
 end
