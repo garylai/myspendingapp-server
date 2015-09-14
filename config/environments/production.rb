@@ -80,5 +80,7 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  # TODO: set up Rack::Cache using memcache
+  config.middleware.use(Rack::Cache, {:verbose => true,
+                                        :metastore => 'heap:/',
+                                        :entitystore => 'file:tmp/cache/rack/body'})
 end
