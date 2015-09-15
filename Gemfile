@@ -49,12 +49,15 @@ group :development, :test do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
-
-  ruby '2.2.2'
 end
 
 group :production do
   # gem 'rails_12factor'
-  ruby '2.2.2', :engine => 'jruby', :engine_version => '9.0.1.0'
   gem 'activerecord-jdbcpostgresql-adapter'
+end
+
+if ENV["RAILS_ENV"] == "production"
+  ruby '2.2.2', :engine => 'jruby', :engine_version => '9.0.1.0'
+else
+  ruby '2.2.2'
 end
