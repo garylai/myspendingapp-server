@@ -40,6 +40,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 group :production do
   # gem 'rails_12factor'
+  ruby '2.2.2', :engine => 'jruby', :engine_version => '9.0.1.0'
   gem 'activerecord-jdbcpostgresql-adapter'
 end
 
@@ -57,5 +58,3 @@ group :development, :test do
 
   ruby '2.2.2'
 end
-
-ruby '1.9.3', :engine => 'jruby', :engine_version => '1.7.16'
