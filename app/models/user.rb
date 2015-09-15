@@ -1,5 +1,5 @@
-require 'PasswordHelper'
-require 'UUIDHelper'
+require 'password_helper'
+require 'uuid_helper'
 
 class User < ActiveRecord::Base
   include UUIDHelper
@@ -16,6 +16,8 @@ class User < ActiveRecord::Base
 
   self.primary_key = :id
   has_many :spendings, :dependent => :destroy
+
+  private_error_attibutes :hashed_password, :salt
 
   def as_json(options={})
      options[:except] ||= [:hashed_password, :salt]
@@ -40,12 +42,5 @@ class User < ActiveRecord::Base
 
   def validate_password?
     self.new_record? || @password_changed
-  end
-
-  def errors_without_readonly_fields
-    err = self.errors.dup
-    err.delete(:hashed_password)
-    err.delete(:salt)
-    err
   end
 end

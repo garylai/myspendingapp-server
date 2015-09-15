@@ -1,4 +1,4 @@
-require 'PasswordHelper'
+require 'password_helper'
 require 'jwt'
 
 class UserController < ApplicationController
