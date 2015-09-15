@@ -38,12 +38,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-group :production do
-  # gem 'rails_12factor'
-  ruby '2.2.2', :engine => 'jruby', :engine_version => '9.0.1.0'
-  gem 'activerecord-jdbcpostgresql-adapter'
-end
-
 group :development, :test do
   gem 'mysql2', '~> 0.3.20'
 
@@ -57,4 +51,10 @@ group :development, :test do
   gem 'spring'
 
   ruby '2.2.2'
+end
+
+group :production do
+  # gem 'rails_12factor'
+  ruby '2.2.2', :engine => 'jruby', :engine_version => '9.0.1.0'
+  gem 'activerecord-jdbcpostgresql-adapter'
 end
