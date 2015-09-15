@@ -39,6 +39,10 @@ Rails.application.configure do
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 
+  # un-comment this when using puma to see logs
+  # config.logger = Logger.new(STDOUT)
+  # config.logger.formatter = ActiveSupport::Logger::SimpleFormatter.new
+
   config.middleware.use(Rack::Cache, {:verbose => true,
                                       :metastore => 'file:tmp/cache/rack/meta',
                                       :entitystore => 'file:tmp/cache/rack/body'})

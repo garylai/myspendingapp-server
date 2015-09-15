@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+gem 'puma'
+gem 'rack-timeout'
 gem 'rack-cache'
 gem 'ruby-jwt', '1.0', :git => 'https://github.com/garylai/ruby-jwt.git'
 gem 'rails-api'
@@ -38,7 +40,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 group :production do
   # gem 'rails_12factor'
-  gem 'pg'
+  gem 'activerecord-jdbcpostgresql-adapter'
+
+  ruby '2.2.2', :engine => 'jruby', :engine_version => '9.0.1.0'
 end
 
 group :development, :test do
@@ -52,5 +56,6 @@ group :development, :test do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+
+  ruby '2.2.2'
 end
-ruby '2.2.2'

@@ -36,6 +36,11 @@ GEM
       activemodel (= 4.2.3)
       activesupport (= 4.2.3)
       arel (~> 6.0)
+    activerecord-jdbc-adapter (1.3.18)
+      activerecord (>= 2.2)
+    activerecord-jdbcpostgresql-adapter (1.3.18)
+      activerecord-jdbc-adapter (~> 1.3.18)
+      jdbc-postgres (>= 9.1)
     activesupport (4.2.3)
       i18n (~> 0.7)
       json (~> 1.7, >= 1.7.7)
@@ -58,6 +63,7 @@ GEM
     jbuilder (2.3.1)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
+    jdbc-postgres (9.4.1200)
     json (1.8.3)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
@@ -72,12 +78,13 @@ GEM
       mini_portile (~> 0.6.0)
     paranoia (2.1.3)
       activerecord (~> 4.0)
-    pg (0.18.3)
+    puma (2.13.4)
     rack (1.6.4)
     rack-cache (1.2)
       rack (>= 0.4)
     rack-test (0.6.3)
       rack (>= 1.0)
+    rack-timeout (0.3.2)
     rails (4.2.3)
       actionmailer (= 4.2.3)
       actionpack (= 4.2.3)
@@ -134,13 +141,15 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activerecord-jdbcpostgresql-adapter
   byebug
   email_validator (= 1.6.0)
   jbuilder (~> 2.0)
   mysql2 (~> 0.3.20)
   paranoia (~> 2.0)
-  pg
+  puma
   rack-cache
+  rack-timeout
   rails (= 4.2.3)
   rails-api
   ruby-jwt (= 1.0)!
