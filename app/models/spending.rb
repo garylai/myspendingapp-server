@@ -29,4 +29,19 @@ class Spending < ActiveRecord::Base
     self[:day_of_spending] = newDate ? newDate.day : nil
     self[:date_of_spending] = newDate
   end
+
+  def self.sum_over_years
+    group(:year_of_spending).sum(:value)
+  end
+
+  def self.sum_over_months(year)
+    where({:year_of_spending => year}).group(:month_of_spending).sum(:value)
+  end
+
+  def self.sum_over_days(year, month)
+    where({:year_of_spending => year, :month_of_spending => month}).group(:day_of_spending).sum(:value)
+  end
+  def self.in_day(date_of_spending)
+    where({:date_of_spending => date_of_spending})
+  end
 end
