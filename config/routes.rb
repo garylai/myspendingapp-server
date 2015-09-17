@@ -12,6 +12,9 @@ Rails.application.routes.draw do
       scope '/spending_type' do
         get '/' => 'spending_type#index', :format => false
       end
+      get '(/year/:year(/month/:month(/day/:day)))/spendings' => 'spending#index',
+                                                        :format => false,
+                                                    :constraints => { year: /\d+/, month: /\d+/, day: /\d+/ }
     end
   end
 
