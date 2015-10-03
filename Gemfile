@@ -58,7 +58,7 @@ group :production, :staging do
   gem 'activerecord-jdbcpostgresql-adapter'
 end
 
-if ENV["RAILS_ENV"] == "production"
+if ENV["RAILS_ENV"] == "production" || ENV["RAILS_ENV"] == "staging"
   ruby '2.2.2', :engine => 'jruby', :engine_version => '9.0.1.0'
 else
   ruby '2.2.2'
