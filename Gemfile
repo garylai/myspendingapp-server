@@ -40,7 +40,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 group :development, :test do
   gem 'hirb'
-  
+
   gem 'mysql2', '~> 0.3.20'
 
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -53,7 +53,7 @@ group :development, :test do
   gem 'spring'
 end
 
-group :production do
+group :production, :staging do
   # gem 'rails_12factor'
   gem 'activerecord-jdbcpostgresql-adapter'
 end
