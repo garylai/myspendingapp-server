@@ -53,7 +53,7 @@ group :development, :test do
   gem 'spring'
 end
 
-group :production, :staging do
+group :production do
   # gem 'rails_12factor'
   gem 'activerecord-jdbcpostgresql-adapter'
 end
