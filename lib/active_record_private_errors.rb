@@ -11,7 +11,6 @@ module ActiveRecordPrivateErrors
   class_methods do
     def private_error_attributes(*attrs)
       @@private_error_attributes = attrs
-      c_print_private_error_attributes
     end
   end
 end
