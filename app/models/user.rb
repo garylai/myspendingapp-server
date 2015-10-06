@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
   self.primary_key = :id
   has_many :spendings, :dependent => :destroy
 
-  private_error_attibutes :hashed_password, :salt
+  private_error_attributes :hashed_password, :salt
 
   def as_json(options={})
      options[:except] ||= [:hashed_password, :salt]

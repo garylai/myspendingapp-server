@@ -16,7 +16,7 @@ class Spending < ActiveRecord::Base
   validates_presence_of :date_of_spending, :user, :spending_type
   validate :validate_date_of_spending
 
-  private_error_attibutes :year_of_spending, :month_of_spending, :day_of_spending
+  private_error_attributes :year_of_spending, :month_of_spending, :day_of_spending
 
   def validate_date_of_spending
     errors.add(:date_of_spending, "incorrect format") unless date_of_spending.is_a? Date
