@@ -4,19 +4,20 @@ require 'jwt'
 class UserController < ApplicationController
   before_action :check_content_type_json, :only => [:create, :login]
   before_action :only => [:create] do
-    check_params_exist :name, :email, :password
+    check_params_exist :first_name, :last_name, :email, :password
   end
   before_action :only => [:login] do
     check_params_exist :email, :password
   end
 
   def create
-    user = User.new(params.permit(:name, :email, :password))
+    user = User.new(params.permit(:first_name, :last_name, :email, :password))
 
     if user.save
       dict = user.as_json
       dict["token"] = createToken(user)
-      render :json => dict, :only => ["name", "email", "id", "token"], :status => :ok
+      p dict
+      render :json => dict, :only => ["first_name", "last_name", "email", "id", "token"], :status => :ok
     else
       render :json => {:errors => user.errors_without_readonly_fields.full_messages}, :status => :bad_request
     end

@@ -1,17 +1,13 @@
 class CreateDummyData < ActiveRecord::Migration
   def up
-    SpendingType.delete_all
-
     SpendingType.create({:name => "food", :id => 1})
     SpendingType.create({:name => "entertainment", :id => 2})
     SpendingType.create({:name => "transportation", :id => 3})
     SpendingType.create({:name => "clothing", :id => 4})
     SpendingType.create({:name => "recurring expenditure", :id => 5})
     SpendingType.create({:name => "others", :id => 6})
+    
     unless Rails.env.production?
-      Spending.delete_all
-      User.delete_all
-
       u = User.new
       u.name = "Gary Lai"
       u.email = "garylaiph@gmail.com"

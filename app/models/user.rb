@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   attr_accessor :password
 
   validates :password, presence: true, if: :validate_password?
-  validates :name, :hashed_password, :salt, presence: true
+  validates :first_name, :last_name, :hashed_password, :salt, presence: true
   validates :email, email: true, uniqueness: true
 
   attr_readonly :hashed_password, :salt
