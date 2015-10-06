@@ -14,7 +14,9 @@ class UserController < ApplicationController
     user = User.new(params.permit(:name, :email, :password))
 
     if user.save
-        render :json => user, :only => [:name, :email, :id], :status => :ok
+      dict = user.as_json
+      dict["token"] = createToken(user)
+      render :json => dict, :only => ["name", "email", "id", "token"], :status => :ok
     else
       render :json => {:errors => user.errors_without_readonly_fields.full_messages}, :status => :bad_request
     end
@@ -35,9 +37,12 @@ class UserController < ApplicationController
       return
     end
 
-    payload = {:u_id => user.id, :iat => Time.now.to_i}
-    token = JWT.encode payload, Rails.application.secrets.hmac_key, Rails.application.secrets.token_algo
+    render :json => {:id => user.id, :token => createToken(user)}, :status => :ok
+  end
 
-    render :json => {:id => user.id, :token => token}, :status => :ok
+  private
+  def createToken(user)
+      payload = {:u_id => user.id, :iat => Time.now.to_i}
+      return JWT.encode payload, Rails.application.secrets.hmac_key, Rails.application.secrets.token_algo
   end
 end
