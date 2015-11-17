@@ -12,6 +12,7 @@ class Spending < ActiveRecord::Base
   belongs_to :spending_type
   validates :value, :presence => true, :numericality => true
   validates :year_of_spending, :month_of_spending, :day_of_spending, :presence => true, :numericality => { only_integer: true }
+  validates :note, length: {maximum: 100}
 
   validates_presence_of :date_of_spending, :user, :spending_type
   validate :validate_date_of_spending

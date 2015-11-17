@@ -49,9 +49,10 @@ class SpendingController < ApplicationController
     spending.date_of_spending = spendingDate
     spending.spending_type = spendingType
     spending.value = params[:value]
+    spending.note = params[:note]
 
     if spending.save
-      render :nothing => true, :status => :ok
+      render :json => spending, :status => :ok
     else
       render :json => {:errors => spending.errors.full_messages}, :status => :bad_request
     end
