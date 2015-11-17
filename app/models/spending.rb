@@ -22,6 +22,11 @@ class Spending < ActiveRecord::Base
     errors.add(:date_of_spending, "incorrect format") unless date_of_spending.is_a? Date
   end
 
+  def as_json(options={})
+     options[:except] ||= [:year_of_spending, :month_of_spending, :day_of_spending, :created_at, :updated_at, :deleted_at]
+     super(options)
+  end
+
   def date_of_spending=(newDate)
     return unless newDate.is_a? Date
     self[:year_of_spending] = newDate ? newDate.year : nil
@@ -50,8 +55,6 @@ class Spending < ActiveRecord::Base
       order(day_of_spending: :desc)
   end
   def self.in_day(date_of_spending)
-    joins(:spending_type).
-      select('spendings.id, spendings.value, spending_types.name as spending_type_name').
       where({:date_of_spending => date_of_spending}).
       order(created_at: :desc)
   end
