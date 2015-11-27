@@ -2,7 +2,7 @@ class SpendingController < ApplicationController
   before_action :check_content_type_json, :only => [:create]
 
   before_action :only => [:create] do
-    check_params_exist :value, :spending_type_id, :spending_date
+    check_params_exist :value, :spending_type_id, :date_of_spending
   end
 
   before_action :authenticate, :only => [:create, :index]
@@ -28,7 +28,7 @@ class SpendingController < ApplicationController
   def create
     spendingDate = nil
     begin
-      spendingDate = params[:spending_date].to_date
+      spendingDate = params[:date_of_spending].to_date
     rescue
       render :json => {:errors => ['incorrect date format']}, :status => :bad_request
       return
