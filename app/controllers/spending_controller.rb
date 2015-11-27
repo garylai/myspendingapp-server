@@ -33,8 +33,10 @@ class SpendingController < ApplicationController
       render :json => {:errors => ['incorrect date format']}, :status => :bad_request
       return
     end
-
-    unless params[:value].to_d.to_s == params[:value].to_s
+    p 'value'
+    p params[:value]
+    unless params[:value].to_d.to_s == params[:value].to_s ||
+            params[:value].to_i.to_s == params[:value].to_s
       render :json => {:errors => ['spending value should be a decimal number']}, :status => :bad_request
       return
     end
