@@ -26,5 +26,7 @@ module Myspendingapp
     config.autoload_paths << Rails.root.join('lib/**/')
 
     config.middleware.delete "Rack::ETag"
+
+    ActiveSupport::JSON::Encoding.encode_big_decimal_as_string = false
   end
 end
