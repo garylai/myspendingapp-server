@@ -17,11 +17,17 @@ class SpendingController < ApplicationController
       end
       render :json => @user.spendings.in_day(targetDate), :status => :ok
     elsif params.has_key? :month
-      render :json => @user.spendings.sum_over_days(params[:year], params[:month]), :except => [:id], :status => :ok
+      render :json => @user.spendings.sum_over_days(params[:year], params[:month]).group_by{|s| s.day_of_spending},
+            :except => [:id, :day_of_spending],
+            :status => :ok
     elsif params.has_key? :year
-      render :json => @user.spendings.sum_over_months(params[:year]), :except => [:id], :status => :ok
+      render :json => @user.spendings.sum_over_months(params[:year]).group_by{|s| s.month_of_spending},
+            :except => [:id, :month_of_spending],
+            :status => :ok
     else
-      render :json => @user.spendings.sum_over_years, :except => [:id], :status => :ok
+      render :json => @user.spendings.sum_over_years.group_by{|s| s.year_of_spending},
+            :except => [:id, :year_of_spending],
+            :status => :ok
     end
   end
 

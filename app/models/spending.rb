@@ -37,24 +37,25 @@ class Spending < ActiveRecord::Base
   end
 
   def self.sum_over_years
-    select('sum(value) as total, year_of_spending').
-      group(:year_of_spending).
-      order(year_of_spending: :desc)
+    select('sum(value) as total, year_of_spending, spending_type_id').
+      group(:year_of_spending, :spending_type_id).
+      order(:year_of_spending, :spending_type_id)
   end
 
   def self.sum_over_months(year)
-    select('sum(value) as total, month_of_spending').
+    select('sum(value) as total, month_of_spending, spending_type_id').
       where({:year_of_spending => year}).
-      group(:month_of_spending).
-      order(month_of_spending: :desc)
+      group(:month_of_spending, :spending_type_id).
+      order(:month_of_spending, :spending_type_id)
   end
 
   def self.sum_over_days(year, month)
-    select('sum(value) as total, day_of_spending').
+    select('sum(value) as total, day_of_spending, spending_type_id').
       where({:year_of_spending => year, :month_of_spending => month}).
-      group(:day_of_spending).
-      order(day_of_spending: :desc)
+      group(:day_of_spending, :spending_type_id).
+      order(:day_of_spending, :spending_type_id)
   end
+
   def self.in_day(date_of_spending)
       where({:date_of_spending => date_of_spending}).
       order(created_at: :desc)
